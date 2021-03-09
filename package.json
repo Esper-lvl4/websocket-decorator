@@ -1,0 +1,21 @@
+{
+  "name": "websocket-decorator",
+  "version": "0.1.0",
+  "description": "Library, that wraps itself around browser's WebSocket constructor, to have a more intuitive interface.",
+  "main": "index.js",
+  "types": "./main.d.ts",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Esper-lvl4/websocket-decorator.git"
+  },
+  "keywords": [
+    "Websocket"
+  ],
+  "author": "Esper_lvl4",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Esper-lvl4/websocket-decorator/issues"
+  },
+  "homepage": "https://github.com/Esper-lvl4/websocket-decorator#readme"
+}
