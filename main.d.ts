@@ -14,4 +14,4 @@ export interface SocketDecoratorType {
 	emit: (event: string, data?: any) => void,
 	getHandlers: (this: SocketDecoratorType, event: string) => ((data: any) => any)[],
 }
-export function connectToWebsocket(url: string, protocols: string | string[]): SocketDecoratorType;
+export function connectToWebsocket(url: string, protocols?: string | string[]): SocketDecoratorType;
