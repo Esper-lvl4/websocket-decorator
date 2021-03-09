@@ -1,4 +1,5 @@
 const { SocketRooms } = require('./SocketRooms');
+const generateId = require('./IdGenerator');
 
 function SocketDecorator(socket) {
 	const props = {
