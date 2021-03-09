@@ -1,4 +1,3 @@
-const { SocketRoomsFactory } = require('./SocketRooms');
 const generateId = require('./IdGenerator');
 
 function SocketDecoratorFactory(socket) {
@@ -6,7 +5,6 @@ function SocketDecoratorFactory(socket) {
     id: generateId(),
 		handlers: new Map(),
 		socket,
-    rooms: SocketRoomsFactory(),
 	};
 
 	const prototype = {
@@ -46,14 +44,6 @@ function SocketDecoratorFactory(socket) {
 			if (!Array.isArray(handlers)) return [];
 			return handlers;
 		},
-    join(name) {
-      if (!this.rooms.join(name)) return;
-      this.emit('socket-join-room', name);
-    },
-    leave(name) {
-      if (!this.rooms.leave(name)) return;
-      this.emit('socket-leave-room', name);
-    }
 	};
 
 	const result = Object.create(prototype);
