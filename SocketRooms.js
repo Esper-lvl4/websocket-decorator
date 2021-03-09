@@ -1,4 +1,4 @@
-function SocketRooms() {
+function SocketRoomsFactory() {
   const props = {
     list: {},
   };
@@ -19,5 +19,5 @@ function SocketRooms() {
 }
 
 module.exports = {
-  SocketRooms,
+  SocketRoomsFactory,
 };

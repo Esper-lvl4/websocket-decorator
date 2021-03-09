@@ -1,17 +1,18 @@
-export interface SocketRoomsType {
+export interface SocketRooms {
   list: {
     [key: string]: boolean,
   },
   join: (name: string) => boolean,
   leave: (name: string) => boolean,
 }
-export interface SocketDecoratorType {
+export interface SocketDecorator {
   id: string,
 	handlers:globalThis.Map<string, ((data: any) => any)[]>,
 	socket: WebSocket,
-  rooms: SocketRoomsType,
+  rooms: SocketRooms,
 	on: (event: string, handler: (data: any) => any) => any,
 	emit: (event: string, data?: any) => void,
-	getHandlers: (this: SocketDecoratorType, event: string) => ((data: any) => any)[],
+	getHandlers: (this: SocketDecorator, event: string) => ((data: any) => any)[],
 }
-export function connectToWebsocket(url: string, protocols?: string | string[]): SocketDecoratorType;
+export function connectToWebsocket(url: string, protocols?: string | string[]): SocketDecorator;
+export function SocketDecoratorFactory(): SocketDecorator;

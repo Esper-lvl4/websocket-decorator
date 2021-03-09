@@ -1,12 +1,12 @@
-const { SocketRooms } = require('./SocketRooms');
+const { SocketRoomsFactory } = require('./SocketRooms');
 const generateId = require('./IdGenerator');
 
-function SocketDecorator(socket) {
+function SocketDecoratorFactory(socket) {
 	const props = {
     id: generateId(),
 		handlers: new Map(),
 		socket,
-    rooms: SocketRooms(),
+    rooms: SocketRoomsFactory(),
 	};
 
 	const prototype = {
@@ -82,5 +82,5 @@ function SocketDecorator(socket) {
 }
 
 module.exports = {
-  SocketDecorator,
+  SocketDecoratorFactory,
 };

@@ -1,10 +1,10 @@
-const { SocketDecorator } = require('./SocketDecorator.js');
+const { SocketDecoratorFactory } = require('./SocketDecorator.js');
 
 function connectToWebsocket(url, protocols) {
   const socket = new WebSocket(url, protocols);
-	return SocketDecorator(socket);
+	return SocketDecoratorFactory(socket);
 };
 module.exports = {
   connectToWebsocket,
-  SocketDecorator,
+  SocketDecoratorFactory,
 };
