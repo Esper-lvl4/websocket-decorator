@@ -59,7 +59,9 @@ function SocketDecoratorFactory(socket) {
 				result.socket.close();
 			}, 30000 + 1000);
 		});
-		result.on('close', heartbeat);
+		result.on('close', () => {
+			clearTimeout(pingTimeout);
+		});
   });
 
 	result.socket.addEventListener('message', function incoming(ev) {
