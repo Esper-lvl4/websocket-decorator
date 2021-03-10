@@ -16,9 +16,10 @@ function SocketDecoratorFactory(socket) {
 			this.getHandlers(event).push(handler);
 		},
 		emit(event, data) {
-      const eventData = {
-        event, data: data || '',
-      };
+      const eventData = { event };
+			if (data !== undefined) {
+				eventData.data = data;
+			}
 			if (this.socket.readyState !== this.socket.OPEN) {
 				this.socket.addEventListener(
 					'open',
