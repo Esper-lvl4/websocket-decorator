@@ -49,8 +49,17 @@ function SocketDecoratorFactory(socket) {
 	const result = Object.create(prototype);
 	Object.assign(result, props);
 
-  result.socket.addEventListener('open', event => {
+  result.socket.addEventListener('open', () => {
 		result.emit('socket:initialization', { id: result.id });
+		const pingTimeout = null;
+		result.on('ping', () => {
+			clearTimeout(pingTimeout);
+
+			pingTimeout = setTimeout(() => {
+				result.socket.close();
+			}, 30000 + 1000);
+		});
+		result.on('close', heartbeat);
   });
 
 	result.socket.addEventListener('message', function incoming(ev) {
