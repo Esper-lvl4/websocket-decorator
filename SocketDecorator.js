@@ -54,7 +54,7 @@ function SocketDecoratorFactory(socket) {
 		let pingTimeout = null;
 		result.on('ping', () => {
 			clearTimeout(pingTimeout);
-
+			result.emit('pong');
 			pingTimeout = setTimeout(() => {
 				result.socket.close();
 			}, 30000 + 1000);
