@@ -51,7 +51,7 @@ function SocketDecoratorFactory(socket) {
 
   result.socket.addEventListener('open', () => {
 		result.emit('socket:initialization', { id: result.id });
-		const pingTimeout = null;
+		let pingTimeout = null;
 		result.on('ping', () => {
 			clearTimeout(pingTimeout);
 
