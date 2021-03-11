@@ -5,6 +5,7 @@ function SocketDecoratorFactory(socket) {
     id: generateId(),
 		handlers: new Map(),
 		socket,
+		_additionalData: {},
 	};
 
 	const prototype = {
@@ -20,6 +21,10 @@ function SocketDecoratorFactory(socket) {
 			if (data !== undefined) {
 				eventData.data = data;
 			}
+			if (Object.keys(this._additionalData).length !== 0) {
+				eventData.additionalData = this._additionalData;
+			}
+
 			if (this.socket.readyState !== this.socket.OPEN) {
 				this.socket.addEventListener(
 					'open',
@@ -44,6 +49,14 @@ function SocketDecoratorFactory(socket) {
 			const handlers = this.handlers.get(event);
 			if (!Array.isArray(handlers)) return [];
 			return handlers;
+		},
+		addDataToEmits(key, data) {
+			if (!key || data === undefined) return;
+			this._additionalData[key] = data;
+		},
+		removeDataFromEmits(key) {
+			if (!key) return;
+			delete this._additionalData[key];
 		},
 	};
 
