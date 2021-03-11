@@ -1,12 +1,17 @@
 const generateId = require('./IdGenerator');
 
-function SocketDecoratorFactory(socket) {
+function SocketDecoratorFactory(socket, additionalData) {
 	const props = {
     id: generateId(),
 		handlers: new Map(),
 		socket,
 		_additionalData: {},
 	};
+
+	if (additionalData && typeof additionalData === 'object') {
+		Object.keys(additionalData)
+			.forEach(key => props._additionalData[key] = additionalData[key]);
+	}
 
 	const prototype = {
 		on(event, handler) {

@@ -10,5 +10,9 @@ export interface SocketDecorator {
 	addDataToEmits: (key: string, data: any) => void,
 	removeDataFromEmits: (key: string) => void,
 }
-export function connectToWebsocket(url: string, protocols?: string | string[]): SocketDecorator;
+export function connectToWebsocket(
+	url: string,
+	protocols?: string | string[],
+	additionalData?: { [key: string]: any },
+): SocketDecorator;
 export function SocketDecoratorFactory(): SocketDecorator;
